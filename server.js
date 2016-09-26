@@ -9,7 +9,7 @@ app.get('*', function(req, res){
   var response = {
     "ip": head['x-forwarded-for'] || req.connection.remoteAddress,
     "language": head['accept-language'].split(",").slice(0,1)[0],
-    "operating system": head['user-agent']substring(userAgent.indexOf('(')+1, userAgent.indexOf(')'))
+    "operating system": head['user-agent']substring(head['user-agent'].indexOf('(')+1, head['user-agent'].indexOf(')'))
   }
   res.json(response);
 })
