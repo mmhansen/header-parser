@@ -5,10 +5,11 @@ app.use(express.static('./public'))
 
 app.get('*', function(req, res){
   var head = req.headers;
+
   var response = {
-    "ip": head['host'],
+    "ip": head['x-forwarded-for'] || req.connection.remoteAddress,
     "language": head['accept-language'].split(",").slice(0,1)[0],
-    "operating system": head['user-agent'].split(" ").slice(2,3)[0]
+    "operating system": head['user-agent']substring(userAgent.indexOf('(')+1, userAgent.indexOf(')'))
   }
   res.json(response);
 })
